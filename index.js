@@ -23,12 +23,14 @@ app.use(helmet({
   }
 }));
 
-
 // 🔧 Middleware
 app.use(cors());
 app.use(express.json());
 
 // 🔗 Routes
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from the backend!' });
+});
 app.use('/api/prompts', promptRoutes);
 
 // 🌍 MongoDB Connection
@@ -45,4 +47,3 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => {
   console.error('❌ MongoDB connection error:', err);
 });
-
